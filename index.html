@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的第一个应用</title>
+    <style>
+        /* CSS 部分：负责美化 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 居中对齐 */
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f2f5; /* 浅灰色背景 */
+            font-family: sans-serif;
+        }
+
+        h1 {
+            color: #1a73e8; /* 经典的谷歌蓝 */
+            transition: transform 0.3s; /* 增加动画过渡效果 */
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #34a853; /* 绿色按钮 */
+            color: white;
+            border: none;
+            border-radius: 5px; /* 圆角 */
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        button:hover {
+            background-color: #2d8e47; /* 鼠标悬停变深色 */
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="title">我的第一个应用</h1>
+    <button onclick="changeMagic()">点我变魔术</button>
+
+    <script>
+        // JavaScript 部分：负责动作
+        function changeMagic() {
+            const title = document.getElementById('title');
+            // 点击后改变文字颜色并放大
+            title.style.color = '#ea4335'; // 变成红色
+            title.innerText = '🎉 哇！你触发了逻辑！';
+            title.style.transform = 'scale(1.2)';
+            
+            // 弹出提示框
+            alert('恭喜你，这行代码就是“交互”的核心！');
+        }
+    </script>
+
+</body>
+</html>
