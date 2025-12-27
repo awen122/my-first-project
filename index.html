@@ -1,74 +1,17 @@
 <body>
-    <!-- 1. 主标题 -->
-    <h1 id="title">小笨蛋来玩吧！</h1>
-    <!-- id="title"：给这个h1元素一个唯一的标识符，方便JavaScript通过ID找到它 -->
+    <h1>小笨蛋来玩吧！</h1>
     
-    <div id="imageContainer" style="margin: 20px; min-height: 200px;">
-        <!-- 2. 图片容器 -->
-        <!-- id="imageContainer"：图片的容器div -->
-        <!-- style="margin: 20px; min-height: 200px;"：
-             - margin: 20px：四周留20像素的外边距
-             - min-height: 200px：最小高度200像素，防止图片加载前布局塌陷 -->
-        
+    <div style="margin: 20px;">
         <img id="magicImage" src="" style="max-width: 300px; border-radius: 10px; display: none;">
-        <!-- 3. 图片元素 -->
-        <!-- id="magicImage"：给图片一个标识符 -->
-        <!-- src=""：初始为空，稍后用JavaScript设置 -->
-        <!-- style属性：
-             - max-width: 300px：最大宽度300像素，防止图片过大
-             - border-radius: 10px：10像素圆角，让图片边角变圆润
-             - display: none：初始隐藏，点击按钮后才显示 -->
     </div>
     
-    <!-- 5. 按钮 -->
-    <button onclick="showMagicImage()">带你看好看的</button>
-    <!-- onclick="showMagicImage()"：点击按钮时调用JavaScript函数showMagicImage -->
+    <button onclick="showImage()">带你看好看的</button>
 
     <script>
-    // 6. 定义异步函数 showMagicImage
-    async function showMagicImage() {
-        // async：声明这是一个异步函数，允许在函数内使用await等待异步操作
-        
-        // 7. 获取DOM元素
-        const title = document.getElementById('title');
-        const img = document.getElementById('magicImage');
-        // document.getElementById()：通过元素的ID获取对应的DOM元素
-        // 将这些元素存储在变量中，方便后续操作
-        
-        // 8. 更新标题文字
-        title.innerText = '大傻瓜';
-        // innerText：设置或获取元素的文本内容
-        
-        // 9. 使用try...catch处理可能出现的错误
-        try {
-            // try：尝试执行下面的代码，如果出现错误，会被catch捕获
-            
-            // 10. 设置图片路径
-            const imageUrl = 'magic.jpg';
-            // 图片路径为'magic.jpg'，这是一个相对路径
-            // 含义：在当前HTML文件所在的同一目录下寻找名为'magic.jpg'的文件
-            
-            const textData = await textRes.json();
-            // await：等待响应转换为JSON格式
-            // textRes.json()：将响应体解析为JSON对象
-            
-            // 12. 更新界面显示内容
-            img.src = imageUrl;
-            // 设置图片的src属性为'magic.jpg'，浏览器会自动加载这个图片
-            
+        function showImage() {
+            const img = document.getElementById('magicImage');
+            img.src = 'magic.jpg';
             img.style.display = 'block';
-            // 将图片从隐藏（display: none）改为显示（display: block）
-            
-            title.innerText = '已送达！';
-            // 更新标题为最终状态
-            
-        } catch (error) {
-            // 13. 错误处理
-            // catch：如果try块中的代码出现错误（如网络问题），执行这里的代码
-            
-            title.innerText = '网络断开啦！';
-            // 当出现错误时（比如无法访问API），显示这个提示
         }
-    }
-</script>
+    </script>
 </body>
