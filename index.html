@@ -1,42 +1,44 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>我的第一个应用</title>
-    <style>
-        /* CSS 部分：负责美化 */
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* 居中对齐 */
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f2f5; /* 浅灰色背景 */
-            font-family: sans-serif;
-        }
-
-        h1 {
-            color: #1a73e8; /* 经典的谷歌蓝 */
-            transition: transform 0.3s; /* 增加动画过渡效果 */
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #34a853; /* 绿色按钮 */
-            color: white;
-            border: none;
-            border-radius: 5px; /* 圆角 */
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        button:hover {
-            background-color: #2d8e47; /* 鼠标悬停变深色 */
-        }
-    </style>
-</head>
 <body>
+    <h1 id="title">我的灵感画框</h1>
+    
+    <div id="imageContainer" style="margin: 20px; min-height: 200px;">
+        <img id="magicImage" src="" style="max-width: 300px; border-radius: 10px; display: none;">
+    </div>
+
+    <p id="quote" style="font-style: italic; color: #666;"></p>
+    
+    <button onclick="changeMagic()">触发灵感升级</button>
+
+    <script>
+        async function changeMagic() {
+            const title = document.getElementById('title');
+            const img = document.getElementById('magicImage');
+            const quote = document.getElementById('quote');
+            
+            title.innerText = '正在调取全球灵感...';
+            
+            try {
+                // 1. 同时调用两个接口（图片和文字）
+                // 随机图地址，每次加一个随机参数防止浏览器缓存
+                const randomId = Math.floor(Math.random() * 1000);
+                const imageUrl = `https://picsum.photos/300/200?random=${randomId}`;
+                
+                const textRes = await fetch('https://v1.hitokoto.cn/');
+                const textData = await textRes.json();
+
+                // 2. 更新界面
+                img.src = imageUrl;
+                img.style.display = 'block'; // 显示图片
+                quote.innerText = `“ ${textData.hitokoto} ”`;
+                title.innerText = '灵感已送达！';
+                
+            } catch (error) {
+                title.innerText = '网络断开啦！';
+            }
+        }
+    </script>
+</body>
+
 
     <h1 id="title">我的第一个应用</h1>
     <button onclick="changeMagic()">点我变魔术</button>
